@@ -1,9 +1,9 @@
 use e_commerce;
-CREATE TABLE orders(
-	Orderquantity int,
-    Orderid serial,
-	constraint fk_orders_users
-    foreign key (Userid) REFERENCES users(Userid),
-	constraint fk_orders_product
-    foreign key (Productid) REFERENCES product(Productid)
+CREATE TABLE orders (
+    Orderid SERIAL PRIMARY KEY,
+    Orderquantity INT,
+    Userid INT,
+    Product_id INT,
+    CONSTRAINT fk_orders_users FOREIGN KEY (Userid) REFERENCES users(Userid),
+    CONSTRAINT fk_orders_product FOREIGN KEY (Product_id) REFERENCES products(Product_id)
 );
