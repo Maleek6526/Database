@@ -195,3 +195,14 @@ FROM Drivers
 ORDER BY Rating DESC, TotalRides DESC
 LIMIT 5;
 
+SELECT RiderID, count(RideID) as total_rides
+from rides group by RiderID
+having count(RideID) > 5;
+
+select sum(Fare) as total_revenue
+from rides;
+
+select City, count(RiderID) as total_rides
+from riders
+group by City order by total_rides desc
+limit 1;
