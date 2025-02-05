@@ -1,5 +1,6 @@
 use lagos_project;
 
+
 create table drivers(
 	DriverID int primary key,
 	Name varchar(100),
@@ -206,3 +207,30 @@ select City, count(RiderID) as total_rides
 from riders
 group by City order by total_rides desc
 limit 1;
+
+select d.DriverID, d.name, sum(r.fare) as totalRevenue
+from drivers d
+join rides r on d. DriverID = r.DriverID
+group by d.DriverID, d.Name
+order by totalRevenue desc
+limit 1;
+
+select RideID, fare, (select avg(fare) from rides) as averageFare
+from rides
+where fare > 1.5 * (select avg(fare) from rides)
+or fare < 0.5 * (select avg(fare) from rides);
+
+select rides.RideID, riders.Name, drivers.Rating as averageRating
+from riders
+join rides on riders.RiderID = rides.RiderID
+join drivers on rides.DriverID = drivers.DriverID
+where drivers.Rating < 3;
+
+
+select avg(Rating) as RatingPerDriver, DriverID
+from rides
+group by DriverID;
+
+
+
+
